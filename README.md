@@ -5,6 +5,7 @@ npm install
 npm run dev
 ```
 Live Demo BaseUrl - [Link](https://software-co.onrender.com)
+
 _it is uploaded on render that takes a minute of restart time after some time of inactivity_
 > I have used express-validator to validate user input
 ### APIs
@@ -18,6 +19,7 @@ _it is uploaded on render that takes a minute of restart time after some time of
 - method: POST
 - route: /api/users/login
 - body: email, password
+
 _desc: it will create jwt token which will directly update token in variable "token" whenever api request will send in "postman" as i have written script_
 
 ##### Get Users
@@ -28,6 +30,7 @@ _desc: it will create jwt token which will directly update token in variable "to
 - method: PUT
 - route: /api/users/update-many
 - body: filter(any condition eg.lastName:"patel"),updateData
+
 _desc: batch updates on multiple users at once with the same data._
 
 ##### Bulk Update Users
@@ -59,12 +62,14 @@ _desc: batch updates on multiple users at once with the same data._
 - method: POST
 - route: /api/users/check-access
 - body: userId, moduleName
+
 _desc: it will return boolean weather it has access or not_
 
 ##### Create Role
 - method: POST
 - route: /api/roles
 - body: roleName,accessModules
+
 _desc: to create a role_
 
 ##### List All Roles
@@ -75,10 +80,12 @@ _desc: to create a role_
 - method: PATCH
 - route: /api/roles/update-access/:roleId
 - body: newModule(pass modules in array)
+
 _desc: Update access modules for a role_
 
 ##### Remove Access Module
 - method: POST
 - route: /api/roles/remove-access/:roleId
 - body: moduleToRemove(pass module name in string)
+
 _desc: remove specified access module from a role_
