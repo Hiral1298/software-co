@@ -1,80 +1,84 @@
-## run project
+# Software-Co
+###  To install and run the project
+```
+npm install 
+npm run dev
+```
+Live Demo BaseUrl - [Link](https://software-co.onrender.com)
+_it is uploaded on render that takes a minute of restart time after some time of inactivity_
+> I have used express-validator to validate user input
+### APIs
 
-<!-- npm install -->
-<!-- npm run dev -->
-<!-- I have used express-validator to validate user input -->
+##### Signup API
+- method: POST
+- route: /api/users/signup
+- body: firstName, lastName, email, password, role
 
-## APIs
+##### Login API
+- method: POST
+- route: /api/users/login
+- body: email, password
+_desc: it will create jwt token which will directly update token in variable "token" whenever api request will send in "postman" as i have written script_
 
-<!-- api: Signup API
-method: POST
-route: /api/users/signup
-body: firstName, lastName, email, password, role
+##### Get Users
+- method: GET
+- route: /api/users?search=keyword
 
-api: Login API
-method: POST
-route: /api/users/login
-body: email, password
-desc: it will create jwt token which will directly update token in variable "token" whenever api request will send in "postman" as i have written script
+##### Update Multiple Users
+- method: PUT
+- route: /api/users/update-many
+- body: filter(any condition eg.lastName:"patel"),updateData
+_desc: batch updates on multiple users at once with the same data._
 
-api: Get Users API
-method: GET
-route: /api/users?search=keyword
+##### Bulk Update Users
+- method: PUT
+- route: /api/users/bulk-update
+- body: updates(array)
 
-api: Update multiple users
-method: PUT
-route: /api/users/update-many
-body: filter(any condition eg.lastName:"patel"),updateData
-desc: batch updates on multiple users at once with the same data.
+##### eg.
+```
+{
+  "updates": [{
+                "userId": "66c076d3abe7917039023c2c",
+                "data": {
+                "firstName": "jinal N",
+                "lastName": "Patel"
+                }
+            },
+            {
+                "userId": "66c06864ee90e1a050003cfc",
+                "data": {
+                "lastName": "Patel"
+                 }
+            }]
+    }
+```
+ _desc: updates multiple users data._
 
-api: bulk update users
-method: PUT
-route: /api/users/bulk-update
-body: updates(array)
+##### Check Access Module
+- method: POST
+- route: /api/users/check-access
+- body: userId, moduleName
+_desc: it will return boolean weather it has access or not_
 
-- eg. {
-  "updates": [
-  {
-  "userId": "66c076d3abe7917039023c2c",
-  "data": {
-  "firstName": "jinal N",
-  "lastName": "Patel"
-  }
-  },
-  {
-  "userId": "66c06864ee90e1a050003cfc",
-  "data": {
-  "lastName": "Patel"
-  }
-  }
-  ]
-  }
-  desc: updates multiple users data.
+##### Create Role
+- method: POST
+- route: /api/roles
+- body: roleName,accessModules
+_desc: to create a role_
 
-api: Check Access Module
-method: POST
-route: /api/users/check-access
-body: userId, moduleName
-desc: it will return boolean weather it has access or not
+##### List All Roles
+- method: get
+- route: /api/roles?search=keyword
 
-api: Create Role
-method: POST
-route: /api/roles
-body: roleName,accessModules
-desc: to create a role
+##### Update Access Module
+- method: PATCH
+- route: /api/roles/update-access/:roleId
+- body: newModule(pass modules in array)
+_desc: Update access modules for a role_
 
-api: list all roles
-method: get
-route: /api/roles?search=keyword
-
-api: Update access module
-method: PATCH
-route: /api/roles/update-access/:roleId
-body: newModule(pass modules in array)
-desc: Update access modules for a role
-
-api: Remove access module
-method: POST
-route: /api/roles/remove-access/:roleId
-body: moduleToRemove(pass module name in string)
-desc: remove specified access module from a role -->
+##### Remove Access Module
+- method: POST
+- route: /api/roles/remove-access/:roleId
+- body: moduleToRemove(pass module name in string)
+_desc: remove specified access module from a role_
